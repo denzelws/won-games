@@ -17,6 +17,8 @@ const wrapperModifiers = {
     ${media.lessThan('medium')`
       width: 5.8rem;
       height: 4.5rem;
+
+
       svg {
         height: 4.5rem;
         pointer-events: none;
