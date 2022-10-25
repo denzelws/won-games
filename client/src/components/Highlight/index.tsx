@@ -3,6 +3,7 @@ import * as S from './styles'
 
 export type HighlightProps = {
   backgroundImage: string
+  floatImage?: string
   title: string
   subtitle: string
   buttonLabel: string
@@ -11,12 +12,14 @@ export type HighlightProps = {
 
 const Highlight = ({
   backgroundImage,
+  floatImage,
   title,
   subtitle,
   buttonLabel,
   buttonLink
 }: HighlightProps) => (
   <S.Wrapper backgroundImage={backgroundImage}>
+    {!!floatImage && <S.FloatImage src={floatImage} />}
     <S.Content>
       <S.Title>{title}</S.Title>
       <S.Subtitle>{subtitle}</S.Subtitle>
