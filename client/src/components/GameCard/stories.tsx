@@ -17,3 +17,9 @@ export const Default: Story<GameCardProps> = (args) => (
     <GameCard {...args} />
   </div>
 )
+
+Default.parameters = {
+  backgrounds: {
+    default: 'dark'
+  }
+}
