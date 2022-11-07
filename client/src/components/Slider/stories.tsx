@@ -8,6 +8,14 @@ export default {
   component: Slider
 } as Meta
 
+const verticalSettings: Settings = {
+  dots: true,
+  infinite: false,
+  vertical: true,
+  verticalSwiping: true,
+  slidesToShow: 1
+}
+
 const settings: Settings = {
   dots: true,
   infinite: true,
@@ -27,6 +35,17 @@ const Slide = styled.div`
 
 export const Default: Story = () => (
   <Slider settings={settings}>
+    <Slide>1</Slide>
+    <Slide>2</Slide>
+    <Slide>3</Slide>
+    <Slide>4</Slide>
+    <Slide>5</Slide>
+    <Slide>6</Slide>
+  </Slider>
+)
+
+export const Vertical: Story = () => (
+  <Slider settings={verticalSettings}>
     <Slide>1</Slide>
     <Slide>2</Slide>
     <Slide>3</Slide>
