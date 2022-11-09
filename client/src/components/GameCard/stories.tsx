@@ -39,6 +39,6 @@ WithRibbon.args = {
 
 Default.parameters = {
   backgrounds: {
-    default: 'dark'
+    default: 'won-dark'
   }
 }
