@@ -10,5 +10,21 @@ describe('<Auth />', () => {
         <input type="text" />
       </Auth>
     )
+
+    expect(screen.getAllByRole('img', { name: /won games/i })).toHaveLength(2)
+
+    expect(
+      screen.getByRole('heading', { name: /favorite games/i })
+    ).toBeInTheDocument()
+
+    expect(
+      screen.getByRole('heading', { name: /won is the best/i })
+    ).toBeInTheDocument()
+
+    expect(
+      screen.getByRole('heading', { name: /auth title/i })
+    ).toBeInTheDocument()
+
+    expect(screen.getByRole('textbox')).toBeInTheDocument()
   })
 })
