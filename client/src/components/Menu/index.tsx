@@ -7,6 +7,7 @@ import Logo from 'components/Logo'
 import Button from 'components/Button'
 import { useState } from 'react'
 import MediaMatch from 'components/MediaMatch'
+import Link from 'next/link'
 
 export type MenuProps = {
   username?: string
@@ -43,7 +44,11 @@ const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         <MediaMatch greaterThan="medium">
-          {!username && <Button>Sign In</Button>}
+          {!username && (
+            <Link href="/sign-in" passHref>
+              <Button as="a">Sign In</Button>
+            </Link>
+          )}
         </MediaMatch>
       </S.MenuGroup>
 
