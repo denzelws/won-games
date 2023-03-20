@@ -6,11 +6,8 @@ import * as S from './styles'
 
 import { Container } from 'components/Container'
 import Footer from 'components/Footer'
-import Heading from 'components/Heading'
 import Menu from 'components/Menu'
 import BannerSlider from 'components/BannerSlider'
-import GameCardSlider from 'components/GameCardSlider'
-import Highlight from 'components/Highlight'
 import Showcase from 'components/Showcase'
 
 export type HomeTemplateProps = {
