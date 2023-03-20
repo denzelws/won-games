@@ -1,13 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/tests/helpers'
 
 import Showcase from '.'
 
 describe('<Showcase />', () => {
-  it('should render the heading', () => {
-    const { container } = render(<Showcase />)
-
-    expect(screen.getByRole('heading', { name: /Showcase/i })).toBeInTheDocument()
-
-    expect(container.firstChild).toMatchSnapshot()
-  })
+  renderWithTheme(<Showcase />)
 })

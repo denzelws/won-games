@@ -15,10 +15,10 @@ export default {
     )
   ],
   parameters: {
-    layout: 'fullscreen'
-  },
-  background: {
-    default: 'won-dark'
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'won-dark'
+    }
   }
 } as Meta
 
@@ -28,4 +28,22 @@ Default.args = {
   title: 'Most Popular',
   highlight: HighlightMock,
   games: gamesMock
+}
+
+export const WithoutHighlight: Story<ShowcaseProps> = (args) => (
+  <Showcase {...args} />
+)
+
+WithoutHighlight.args = {
+  title: 'Most Popular',
+  games: gamesMock
+}
+
+export const WithoutGames: Story<ShowcaseProps> = (args) => (
+  <Showcase {...args} />
+)
+
+WithoutGames.args = {
+  title: 'Most Popular',
+  highlight: HighlightMock
 }
