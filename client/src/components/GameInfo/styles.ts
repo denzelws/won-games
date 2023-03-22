@@ -7,25 +7,25 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     position: relative;
     background: ${theme.colors.white};
-    padding; ${theme.spacings.small};
+    padding: ${theme.spacings.small};
 
-    ${RibbonStyles.Wrapper}{
+    ${RibbonStyles.Wrapper} {
       right: -1rem;
 
-      &:before{
-        border-right-width: 1rem;
+      &:before {
+        border-right-width: 1.1rem;
       }
     }
 
     ${media.greaterThan('medium')`
-      ${RibbonStyles.Wrapper} {
-      right: ${theme.spacings.small};
-      top: ${theme.spacings.small};
-      font-size: ${theme.font.sizes.large};
-      &:before {
-          border: none;
-      }
-    }
+     ${RibbonStyles.Wrapper}{
+       top: ${theme.spacings.small};
+       right: ${theme.spacings.small};
+       font-size: ${theme.font.sizes.large};
+       &:before {
+        border: none;
+       }
+     }
     `}
   `}
 `
@@ -37,7 +37,7 @@ export const Description = styled.p`
     margin-bottom: ${theme.spacings.small};
 
     ${media.greaterThan('medium')`
-     max-width: 77rem;
+      max-width: 77rem;
     `}
   `}
 `
@@ -55,6 +55,7 @@ export const ButtonWrapper = styled.div`
 
     ${media.greaterThan('medium')`
       flex-direction: row-reverse;
+
       > button {
         width: initial;
         margin-bottom: 0;
