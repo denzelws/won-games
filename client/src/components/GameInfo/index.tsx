@@ -17,7 +17,9 @@ export type GameInfoProps = {
 
 const GameInfo = ({ title, description, price }: GameInfoProps) => (
   <S.Wrapper>
-    <Heading>{title}</Heading>
+    <Heading color="black" lineBottom lineColor="primary">
+      {title}
+    </Heading>
     <S.Description>{description}</S.Description>
 
     <Ribbon color="secondary">{`$${price}`}</Ribbon>
