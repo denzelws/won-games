@@ -3,6 +3,7 @@ import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/A
 
 import Slider, { SliderSettings } from 'components/Slider'
 import * as S from './styles'
+import { useState } from 'react'
 
 const settings: SliderSettings = {
   arrows: true,
@@ -48,19 +49,29 @@ export type GalleryProps = {
   items: GalleryImageProps[]
 }
 
-const Gallery = ({ items }: GalleryProps) => (
-  <S.Wrapper>
-    <Slider settings={settings}>
-      {items.map((item, index) => (
-        <img
-          role="button"
-          key={`thumb-${index}`}
-          src={item.src}
-          alt={`Thumb: - ${item.label}`}
-        />
-      ))}
-    </Slider>
-  </S.Wrapper>
-)
+const Gallery = ({ items }: GalleryProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <S.Wrapper>
+      <Slider settings={settings}>
+        {items.map((item, index) => (
+          <img
+            role="button"
+            key={`thumb-${index}`}
+            src={item.src}
+            alt={`Thumb: - ${item.label}`}
+            onClick={() => setIsOpen(true)}
+          />
+        ))}
+      </Slider>
+
+      <S.Modal
+        isOpen={isOpen}
+        aria-label="modal"
+        aria-hidden={!isOpen}
+      ></S.Modal>
+    </S.Wrapper>
+  )
+}
 
 export default Gallery
