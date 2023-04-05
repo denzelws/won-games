@@ -7,8 +7,7 @@ const props = {
   title: 'Resident Evil',
   developer: 'GearBox Software',
   img: '/img/resident-evil.png',
-  price: 'R$ 235,00',
-  promotionalPrice: 'R$ 15,00'
+  price: 'R$ 235,00'
 }
 
 describe('<GameCard />', () => {
@@ -42,11 +41,14 @@ describe('<GameCard />', () => {
 
   it('should render a line-through in price when promotional ', () => {
     renderWithTheme(<GameCard {...props} promotionalPrice="R$ 15,00" />)
-    expect(screen.getByText('R$ 235,00')).toHaveStyle({
+    const price = screen.getByText('R$ 235,00')
+    const promotionalPrice = screen.getByText('R$ 15,00')
+
+    expect(price).toHaveStyle({
       textDecoration: 'line-through'
     })
 
-    expect(screen.getByText('R$ 15,00')).not.toHaveStyle({
+    expect(promotionalPrice).not.toHaveStyle({
       textDecoration: 'line-through'
     })
   })
