@@ -29,11 +29,29 @@ describe('<Gallery />', () => {
     expect(modal.getAttribute('aria-hidden')).toBe('true')
     expect(modal).toHaveStyle({ opacity: 0 })
 
-    // clicar no botao de abrir menu e verificar se abriu
+    // clicar no botao de abrir o modal e verificar se abriu
     fireEvent.click(
       screen.getByRole('button', { name: /Thumb: - Gallery Image 1/i })
     )
     expect(modal.getAttribute('aria-hidden')).toBe('false')
     expect(modal).toHaveStyle({ opacity: 1 })
+  })
+
+  it('should handle close modal', () => {
+    renderWithTheme(<Gallery items={mockItems.slice(0, 2)} />)
+
+    // selecionar o nosso modal
+    const modal = screen.getByLabelText('modal')
+
+    // clicar no botao de abrir o modal e verificar se abriu
+    fireEvent.click(
+      screen.getByRole('button', { name: /Thumb: - Gallery Image 1/i })
+    )
+
+    //clicar para fechar o modal
+    fireEvent.click(screen.getByRole('button', { name: /close modal/i }))
+
+    expect(modal.getAttribute('aria-hidden')).toBe('true')
+    expect(modal).toHaveStyle({ opacity: 0 })
   })
 })
