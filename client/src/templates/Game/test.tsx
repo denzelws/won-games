@@ -6,10 +6,9 @@ import gameDetailsMock from 'components/GameDetails/mock'
 import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
 
+import Game, { GameTemplateProps } from '.'
 import { GameDetailsProps } from 'components/GameDetails'
 import { renderWithTheme } from 'utils/tests/helpers'
-
-import Game, { GameTemplateProps } from '.'
 
 const props: GameTemplateProps = {
   cover: 'bg-image.jpg',
@@ -23,59 +22,57 @@ const props: GameTemplateProps = {
 }
 
 jest.mock('components/Menu', () => ({
-  __esmodule: true,
+  __esModule: true,
   default: function Mock() {
-    return <div datatest-id="Mock Menu" />
+    return <div data-testid="Mock Menu" />
   }
 }))
 
 jest.mock('components/Gallery', () => ({
-  __esmodule: true,
+  __esModule: true,
   default: function Mock() {
-    return <div datatest-id="Mock Gallery" />
+    return <div data-testid="Mock Gallery" />
   }
 }))
 
 jest.mock('components/GameDetails', () => ({
-  __esmodule: true,
+  __esModule: true,
   default: function Mock() {
-    return <div datatest-id="Mock Details" />
+    return <div data-testid="Mock GameDetails" />
   }
 }))
 
 jest.mock('components/GameInfo', () => ({
-  __esmodule: true,
+  __esModule: true,
   default: function Mock() {
-    return <div datatest-id="Mock GameInfo" />
+    return <div data-testid="Mock GameInfo" />
   }
 }))
 
 jest.mock('components/Showcase', () => ({
-  __esmodule: true,
+  __esModule: true,
   default: function Mock() {
-    return <div datatest-id="Mock Showcase" />
+    return <div data-testid="Mock Showcase" />
   }
 }))
-
 describe('<Game />', () => {
   it('should render the template with components', () => {
     renderWithTheme(<Game {...props} />)
 
-    expect(screen.getByTestId(/mock menu/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/mock gallery/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/mock details/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/mock gameinfo/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/mock showcase/i)).toBeInTheDocument()
+    expect(screen.getByTestId('Mock Gallery')).toBeInTheDocument()
+    expect(screen.getByTestId('Mock GameDetails')).toBeInTheDocument()
+    expect(screen.getByTestId('Mock GameInfo')).toBeInTheDocument()
+    expect(screen.getAllByTestId('Mock Showcase')).toHaveLength(2)
     expect(screen.getByText(/custom html/i)).toBeInTheDocument()
   })
 
-  it('should not render the gallery if no images', () => {
+  it('should not render gallery without images', () => {
     renderWithTheme(<Game {...props} gallery={undefined} />)
 
     expect(screen.queryByTestId('Mock Gallery')).not.toBeInTheDocument()
   })
 
-  it('should not render the gallery on mobile', () => {
+  it('should not render gallery on mobile', () => {
     renderWithTheme(<Game {...props} />)
 
     expect(screen.getByTestId('Mock Gallery').parentElement).toHaveStyle({
