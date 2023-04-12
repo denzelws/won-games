@@ -11,7 +11,8 @@ export async function getStaticProps() {
   return {
     props: {
       recommendedGames: gamesMock.slice(0, 5),
-      upcomingHighlight: highlightMock
+      upcomingHighlight: highlightMock,
+      games: gamesMock.slice(0, 6)
     }
   }
 }
