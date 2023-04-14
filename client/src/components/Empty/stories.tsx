@@ -11,7 +11,11 @@ export default {
   }
 } as Meta
 
-export const Default: Story<EmptyProps> = (args) => <Empty {...args} />
+export const Default: Story<EmptyProps> = (args) => (
+  <div style={{ maxWidth: '130rem', margin: '0 auto' }}>
+    <Empty {...args} />
+  </div>
+)
 
 Default.args = {
   title: 'Your wishlist is empty',

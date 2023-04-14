@@ -28,4 +28,18 @@ describe('<Wishlist />', () => {
     expect(screen.getAllByText(/project winter/i)).toHaveLength(9)
     expect(screen.getByTestId(/mock showcase/i)).toBeInTheDocument()
   })
+
+  it('should render empty when there are no games', () => {
+    renderWithTheme(
+      <Wishlist
+        recommendedGames={gamesMock}
+        upcomingHighlight={highlightMock}
+      />
+    )
+
+    expect(screen.queryByText(/project winter/i)).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /your wishlist is empty/i })
+    ).toBeInTheDocument()
+  })
 })
