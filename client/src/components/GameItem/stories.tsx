@@ -8,11 +8,6 @@ export default {
     img: 'https://source.unsplash.com/user/willianjusten/151x70',
     title: 'Red Dead Redemption 2',
     price: 'R$ 215,00'
-  },
-  parameters: {
-    backgrounds: {
-      default: 'won-dark'
-    }
   }
 } as Meta
 
@@ -21,3 +16,13 @@ export const Default: Story<GameItemProps> = (args) => (
     <GameItem {...args} />
   </div>
 )
+
+export const WithPayment: Story<GameItemProps> = (args) => (
+  <div style={{ maxWidth: '130rem', margin: '0 auto' }}>
+    <GameItem {...args} />
+  </div>
+)
+
+WithPayment.args = {
+  downloadLink: 'http://wongames.com/games/41352352'
+}
