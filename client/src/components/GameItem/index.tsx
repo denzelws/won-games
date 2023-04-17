@@ -10,7 +10,7 @@ const GameItem = ({ title, img, price }: GameItemProps) => (
   <S.Wrapper>
     <S.GameContent>
       <S.ImageBox>
-        <S.Image src={img} aria-label="image title" />
+        <img src={img} alt={title} />
       </S.ImageBox>
 
       <S.Content>
