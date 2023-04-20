@@ -1,4 +1,4 @@
-import Base from 'components/Base'
+import Base from 'templates/Base'
 import * as S from './styles'
 import GameInfo, { GameInfoProps } from 'components/GameInfo'
 import Gallery from 'components/Gallery'

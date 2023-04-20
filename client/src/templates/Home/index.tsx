@@ -1,4 +1,4 @@
-import Base from 'components/Base'
+import Base from 'templates/Base'
 
 import { BannerProps } from 'components/Banner'
 import { GameCardProps } from 'components/GameCard'

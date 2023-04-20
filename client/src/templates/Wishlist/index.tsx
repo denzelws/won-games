@@ -1,4 +1,4 @@
-import Base from 'components/Base'
+import Base from 'templates/Base'
 
 import Heading from 'components/Heading'
 import Showcase from 'components/Showcase'
