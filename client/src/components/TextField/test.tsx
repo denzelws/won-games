@@ -8,7 +8,7 @@ import TextField from '.'
 
 describe('<TextField />', () => {
   it('should render with label', () => {
-    renderWithTheme(<TextField label="textfield" labelFor="field" />)
+    renderWithTheme(<TextField label="textfield" name="Label" />)
 
     expect(screen.getByLabelText(/textfield/i)).toBeInTheDocument()
   })
@@ -28,12 +28,7 @@ describe('<TextField />', () => {
   it('changes its value when typing ', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-      />
+      <TextField onInput={onInput} label="textfield" name="Textfield" />
     )
 
     const input = screen.getByRole('textbox')
@@ -50,9 +45,7 @@ describe('<TextField />', () => {
   })
 
   it('should be accessible with tab', async () => {
-    renderWithTheme(
-      <TextField label="textfield" labelFor="textfield" id="textfield" />
-    )
+    renderWithTheme(<TextField label="textfield" name="Textfield" />)
 
     const input = screen.getByLabelText(/textfield/i)
     expect(document.body).toHaveFocus()
@@ -83,14 +76,7 @@ describe('<TextField />', () => {
   it('does not change its value when disabled', async () => {
     const onInput = jest.fn()
 
-    renderWithTheme(
-      <TextField
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-        disabled
-      />
-    )
+    renderWithTheme(<TextField label="textfield" name="Textfield" disabled />)
 
     const input = screen.getByRole('textbox')
     expect(input).toBeDisabled()
@@ -105,14 +91,7 @@ describe('<TextField />', () => {
   })
 
   it('should not be accessible with tab', async () => {
-    renderWithTheme(
-      <TextField
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-        disabled
-      />
-    )
+    renderWithTheme(<TextField label="textfield" name="Textfield" disabled />)
 
     const input = screen.getByRole('textbox')
     expect(document.body).toHaveFocus()
@@ -123,12 +102,7 @@ describe('<TextField />', () => {
 
   it('should show an error message', () => {
     const { container } = renderWithTheme(
-      <TextField
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-        error="Error message"
-      />
+      <TextField label="textfield" error="Error message" />
     )
 
     expect(screen.getByText(/error message/i)).toBeInTheDocument()
