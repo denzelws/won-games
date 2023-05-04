@@ -11,4 +11,4 @@ export default {
   }
 } as Meta
 
-export const Default: Story = () => <ProfileMenu />
+export const Default: Story = (args) => <ProfileMenu {...args} />
