@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 import Heading from 'components/Heading'
+import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
 import Radio from 'components/Radio'
-import Button from 'components/Button'
 
 import * as S from './styles'
 
@@ -26,10 +26,23 @@ type Values = {
 export type ExploreSidebarProps = {
   items: ItemProps[]
   initialValues?: Values
+  onFilter: (values: Values) => void
 }
 
-const ExploreSidebar = ({ items, initialValues = {} }: ExploreSidebarProps) => {
+const ExploreSidebar = ({
+  items,
+  onFilter,
+  initialValues = {}
+}: ExploreSidebarProps) => {
   const [values, setValues] = useState(initialValues)
+
+  const handleChange = (name: string, value: boolean | string) => {
+    setValues((prevState) => ({ ...prevState, [name]: value }))
+  }
+
+  const handleFilter = () => {
+    onFilter(values)
+  }
 
   return (
     <S.Wrapper>
@@ -47,6 +60,7 @@ const ExploreSidebar = ({ items, initialValues = {} }: ExploreSidebarProps) => {
                 label={field.label}
                 labelFor={field.name}
                 isChecked={!!values[field.name]}
+                onCheck={(v) => handleChange(field.name, v)}
               />
             ))}
 
@@ -60,12 +74,13 @@ const ExploreSidebar = ({ items, initialValues = {} }: ExploreSidebarProps) => {
                 label={field.label}
                 labelFor={field.name}
                 defaultChecked={field.name === values[item.name]}
+                onChange={() => handleChange(item.name, field.name)}
               />
             ))}
         </div>
       ))}
 
-      <Button fullWidth size="medium">
+      <Button fullWidth size="medium" onClick={handleFilter}>
         Filter
       </Button>
     </S.Wrapper>
