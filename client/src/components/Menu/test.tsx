@@ -9,7 +9,7 @@ describe('<Menu />', () => {
     expect(screen.getByRole('img', { name: /won games/i })).toBeInTheDocument()
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/open shoppingcart/i)).toBeInTheDocument()
+    expect(screen.getAllByLabelText(/shopping cart/i)).toHaveLength(2)
   })
 
   it('should render the open/close menu', () => {
@@ -35,7 +35,7 @@ describe('<Menu />', () => {
 
   it('should show RegisterBox when logged out', () => {
     renderWithTheme(<Menu />)
-    expect(screen.queryByText(/my account/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument()
     expect(screen.getByText(/log in now/i)).toBeInTheDocument()
     expect(screen.getByText(/sign up/i)).toBeInTheDocument()
@@ -45,7 +45,7 @@ describe('<Menu />', () => {
     renderWithTheme(<Menu username="denzel" />)
     expect(screen.queryByText(/log in now/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument()
-    expect(screen.getByText(/my account/i)).toBeInTheDocument()
-    expect(screen.getByText(/wishlist/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/my profile/i)).toHaveLength(2)
+    expect(screen.getAllByText(/wishlist/i)).toHaveLength(2)
   })
 })
