@@ -1,6 +1,7 @@
 export default [
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/resident-evil-background.png',
     price: 'R$ 235,00',
@@ -8,6 +9,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/red-dead-gamecard.png',
     price: 'R$ 300,00',
@@ -15,6 +17,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/borderlands.png',
     price: 'R$ 270,00',
@@ -22,6 +25,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',
@@ -29,6 +33,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',
@@ -36,6 +41,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',
@@ -43,6 +49,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',
@@ -50,6 +57,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',
@@ -57,6 +65,7 @@ export default [
   },
   {
     title: 'Project Winter',
+    slug: 'project-winter',
     developer: 'GearBox Software',
     img: '/img/project-winter.png',
     price: 'R$ 230,00',

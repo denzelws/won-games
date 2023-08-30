@@ -5,6 +5,7 @@ export default {
   title: 'GameCard',
   component: GameCard,
   args: {
+    slug: 'resident-evil',
     title: 'Resident Evil',
     developer: 'GearBox Software',
     img: '/img/resident-evil-background.png',
