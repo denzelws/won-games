@@ -8,11 +8,12 @@ import Heading from 'components/Heading'
 import Ribbon from 'components/Ribbon'
 
 import * as S from './styles'
+import formatPrice from 'utils/format-price'
 
 export type GameInfoProps = {
   title: string
   description: string
-  price: string
+  price: number
 }
 
 const GameInfo = ({ title, description, price }: GameInfoProps) => (
@@ -22,7 +23,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => (
     </Heading>
     <S.Description>{description}</S.Description>
 
-    <Ribbon color="secondary">{`$${price}`}</Ribbon>
+    <Ribbon color="secondary">{formatPrice(price)}</Ribbon>
 
     <S.ButtonWrapper>
       <Button icon={<AddShoppingCart />} size="large">

@@ -9,8 +9,8 @@ export default {
     title: 'Resident Evil',
     developer: 'GearBox Software',
     img: '/img/resident-evil-background.png',
-    price: 'R$ 235,00',
-    promotionalPrice: 'R$ 200,00'
+    price: 235,
+    promotionalPrice: 200
   },
   argTypes: {
     onFav: { action: 'clicked' },
