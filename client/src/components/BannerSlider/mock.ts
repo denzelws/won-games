@@ -1,6 +1,6 @@
 export default [
   {
-    img: 'https://source.unsplash.com/user/willianjusten/1042x580',
+    img: '/img/project-winter.png',
     title: 'Defy death 1',
     subtitle: '<p>Play the new <strong>CrashLands</strong> season',
     buttonLabel: 'Buy now',
