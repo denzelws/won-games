@@ -1,6 +1,5 @@
 import Home, { HomeTemplateProps } from 'templates/Home'
 
-import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
 
 import { initializeApollo } from 'utils/apollo'
@@ -33,6 +32,7 @@ export async function getServerSideProps() {
           ribbonSize: banner.ribbon.size
         })
       })),
+      newGamesTitle: sections?.newGames?.title,
       newGames: newGames.map((game) => ({
         title: game.name,
         slug: game.slug,
@@ -41,6 +41,7 @@ export async function getServerSideProps() {
         price: game.price
       })),
       mostPopularHighlight: highlightMock,
+      mostPopularGamesTitle: sections?.popularGames?.title,
       mostPopularGames: sections!.popularGames!.games.map((game) => ({
         title: game.name,
         slug: game.slug,
@@ -48,6 +49,7 @@ export async function getServerSideProps() {
         img: `http://localhost:1337${game.cover?.url}`,
         price: game.price
       })),
+      upcomingGamesTitle: sections?.upcomingGames?.title,
       upcomingGames: upcommingGames.map((game) => ({
         title: game.name,
         slug: game.slug,
@@ -57,6 +59,7 @@ export async function getServerSideProps() {
       })),
       upcomingHighlight: highlightMock,
       freeHighlight: highlightMock,
+      freeGamesTitle: sections?.freeGames?.title,
       freeGames: freeGames.map((game) => ({
         title: game.name,
         slug: game.slug,
@@ -67,16 +70,3 @@ export async function getServerSideProps() {
     }
   }
 }
-
-// title: 'Project Winter',
-// slug: 'project-winter',
-// developer: 'GearBox Software',
-// img: '/img/resident-evil-background.png',
-// price: 'R$ 235,00',
-// promotionalPrice: 'R$ 200,00'
-
-// name: string;
-// slug: string;
-// developers: QueryHome_newGames_developers[];
-// cover: QueryHome_newGames_cover | null;
-// price: number;
