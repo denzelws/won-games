@@ -1,8 +1,10 @@
 import Home, { HomeTemplateProps } from 'templates/Home'
-import bannerMock from 'components/BannerSlider/mock'
+
 import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
+
 import { initializeApollo } from 'utils/apollo'
+
 import { QueryHome } from 'graphql/generated/QueryHome'
 import { QUERY_HOME } from 'graphql/queries/home'
 
@@ -12,12 +14,14 @@ export default function Index(props: HomeTemplateProps) {
 
 export async function getServerSideProps() {
   const apolloClient = initializeApollo()
-  const { data } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
+  const {
+    data: { banners, newGames }
+  } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
 
   return {
     props: {
       revalidate: 10,
-      banners: data.banners.map((banner) => ({
+      banners: banners.map((banner) => ({
         img: `http://localhost:1337${banner.image?.url}`,
         title: banner.title,
         subtitle: banner.subtitle,
@@ -29,7 +33,13 @@ export async function getServerSideProps() {
           ribbonSize: banner.ribbon.size
         })
       })),
-      newGames: gamesMock,
+      newGames: newGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: `http://localhost:1337${game.cover?.url}`,
+        price: game.price
+      })),
       mostPopularHighlight: highlightMock,
       mostPopularGames: gamesMock,
       upcomingGames: gamesMock,
@@ -41,28 +51,15 @@ export async function getServerSideProps() {
   }
 }
 
-// {
-//   img: '/img/project-winter.png',
-//   title: 'Defy death 1',
-//   subtitle: '<p>Play the new <strong>CrashLands</strong> season',
-//   buttonLabel: 'Buy now',
-//   buttonLink: '/games/defy-death',
-//   ribbon: 'Bestselling'
-// }
+// title: 'Project Winter',
+// slug: 'project-winter',
+// developer: 'GearBox Software',
+// img: '/img/resident-evil-background.png',
+// price: 'R$ 235,00',
+// promotionalPrice: 'R$ 200,00'
 
-// {
-//   "image": {
-//     "url": "/uploads/cyberpunk2_4518b71167.jpg"
-//   },
-//   "title": "Cyberpunk 2077",
-//   "subtitle": "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City.",
-//   "button": {
-//     "label": "Buy now",
-//     "link": "''"
-//   },
-//   "ribbon": {
-//     "text": "New",
-//     "color": "primary",
-//     "size": "small"
-//   }
-// }
+// name: string;
+// slug: string;
+// developers: QueryHome_newGames_developers[];
+// cover: QueryHome_newGames_cover | null;
+// price: number;
