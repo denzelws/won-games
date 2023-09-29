@@ -15,7 +15,7 @@ export default function Index(props: HomeTemplateProps) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo()
   const {
-    data: { banners, newGames }
+    data: { banners, newGames, upcommingGames, freeGames, sections }
   } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
 
   return {
@@ -41,12 +41,29 @@ export async function getServerSideProps() {
         price: game.price
       })),
       mostPopularHighlight: highlightMock,
-      mostPopularGames: gamesMock,
-      upcomingGames: gamesMock,
+      mostPopularGames: sections!.popularGames!.games.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: `http://localhost:1337${game.cover?.url}`,
+        price: game.price
+      })),
+      upcomingGames: upcommingGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: `http://localhost:1337${game.cover?.url}`,
+        price: game.price
+      })),
       upcomingHighlight: highlightMock,
-      upcomingMoreGames: gamesMock,
       freeHighlight: highlightMock,
-      freeGames: gamesMock
+      freeGames: freeGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: `http://localhost:1337${game.cover?.url}`,
+        price: game.price
+      }))
     }
   }
 }
