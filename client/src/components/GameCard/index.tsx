@@ -13,7 +13,7 @@ export type GameCardProps = {
   slug: string
   title: string
   developer: string
-  img: string
+  img: string | undefined
   price: number
   promotionalPrice?: number
   favorite?: boolean
