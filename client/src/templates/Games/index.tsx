@@ -37,25 +37,29 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
       <S.Main>
         <ExploreSidebar items={filterItems} onFilter={handleFilter} />
 
-        <section>
-          <Grid>
-            {data?.games.map((game) => (
-              <GameCard
-                key={game.slug}
-                slug={game.slug}
-                title={game.name}
-                developer={game.developers[0].name}
-                img={`http://localhost:1337${game.cover?.url}` || undefined}
-                price={game.price}
-              />
-            ))}
-          </Grid>
+        {loading ? (
+          'Loading...'
+        ) : (
+          <section>
+            <Grid>
+              {data?.games.map((game) => (
+                <GameCard
+                  key={game.slug}
+                  slug={game.slug}
+                  title={game.name}
+                  developer={game.developers[0].name}
+                  img={`http://localhost:1337${game.cover?.url}` || undefined}
+                  price={game.price}
+                />
+              ))}
+            </Grid>
 
-          <S.ShowMore role="button" onClick={handleShowMore}>
-            <p>Show More</p>
-            <ArrowDown size={35} />
-          </S.ShowMore>
-        </section>
+            <S.ShowMore role="button" onClick={handleShowMore}>
+              <p>Show More</p>
+              <ArrowDown size={35} />
+            </S.ShowMore>
+          </section>
+        )}
       </S.Main>
     </Base>
   )
