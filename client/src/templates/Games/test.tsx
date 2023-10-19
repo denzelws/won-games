@@ -2,7 +2,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import { screen } from '@testing-library/react'
 
 import { MockedProvider } from '@apollo/client/testing'
-import { fetchMoreMock, gamesMock } from './mocks'
+import { fetchMoreMock, gamesMock, noGamesMock } from './mocks'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Games from '.'
@@ -37,7 +37,7 @@ jest.mock('next/link', () => ({
 describe('<Games />', () => {
   it('should render without data', () => {
     renderWithTheme(
-      <MockedProvider mocks={[]} addTypename={false}>
+      <MockedProvider mocks={[noGamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
