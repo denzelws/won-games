@@ -12,6 +12,7 @@ import { Grid } from 'components/Grid'
 import { useRouter } from 'next/router'
 import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
 import { ParsedUrlQueryInput } from 'querystring'
+import Empty from 'components/Empty'
 
 export type GamesTemplateProps = {
   games?: GameCardProps[]
@@ -57,19 +58,29 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
           'Loading...'
         ) : (
           <section>
-            <Grid>
-              {data?.games.map((game) => (
-                <GameCard
-                  key={game.slug}
-                  slug={game.slug}
-                  title={game.name}
-                  developer={game.developers[0].name}
-                  img={`http://localhost:1337${game.cover?.url}` || undefined}
-                  price={game.price}
-                />
-              ))}
-            </Grid>
-
+            {data?.games.length ? (
+              <>
+                <Grid>
+                  {data?.games.map((game) => (
+                    <GameCard
+                      key={game.slug}
+                      slug={game.slug}
+                      title={game.name}
+                      developer={game.developers[0].name}
+                      img={
+                        `http://localhost:1337${game.cover?.url}` || undefined
+                      }
+                      price={game.price}
+                    />
+                  ))}
+                </Grid>
+              </>
+            ) : (
+              <Empty
+                title=":("
+                description="We didn't found any game with this filter"
+              />
+            )}
             <S.ShowMore role="button" onClick={handleShowMore}>
               <p>Show More</p>
               <ArrowDown size={35} />
