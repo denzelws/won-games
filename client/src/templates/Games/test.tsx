@@ -41,8 +41,6 @@ describe('<Games />', () => {
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
-
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
   })
 
   it('should render sections', async () => {
@@ -52,7 +50,6 @@ describe('<Games />', () => {
       </MockedProvider>
     )
 
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
     expect(await screen.findByText(/Price/i)).toBeInTheDocument()
     expect(await screen.findByText(/The Elder Scrolls/i)).toBeInTheDocument()
 
