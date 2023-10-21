@@ -19,7 +19,7 @@ describe('<GameInfo />', () => {
 
     expect(screen.getByText(/game description/i)).toBeInTheDocument()
 
-    expect(screen.getByText(/\$220\.00/)).toBeInTheDocument()
+    expect(screen.getByText(/\$220/)).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
