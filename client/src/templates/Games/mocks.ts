@@ -25,6 +25,7 @@ export const gamesMock = {
     data: {
       games: [
         {
+          id: '1',
           name: 'The Elder Scrolls IV: Oblivion - Game of the Year Edition Deluxe',
           slug: 'elder-scrolls-iv-oblivion-game-of-the-year-edition-deluxe-the',
           developers: [{ name: 'Bethesda Game Studios' }],
@@ -52,6 +53,7 @@ export const fetchMoreMock = {
     data: {
       games: [
         {
+          id: '2',
           name: 'Fetch More Game',
           slug: 'fetch-more',
           developers: [{ name: 'some developer' }],

@@ -21,6 +21,7 @@ export interface QueryUpcoming_upcommingGames_cover {
 
 export interface QueryUpcoming_upcommingGames {
   __typename: "Game";
+  id: string;
   name: string;
   slug: string;
   developers: QueryUpcoming_upcommingGames_developers[];
