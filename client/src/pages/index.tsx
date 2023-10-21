@@ -10,7 +10,7 @@ export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo()
   const TODAY = new Date().toISOString().slice(0, 10)
 
@@ -20,12 +20,13 @@ export async function getServerSideProps() {
     query: QUERY_HOME,
     variables: {
       date: TODAY
-    }
+    },
+    fetchPolicy: 'no-cache'
   })
 
   return {
+    revalidate: 10,
     props: {
-      revalidate: 10,
       banners: bannerMapper(banners),
       newGamesTitle: sections?.newGames?.title,
       newGames: gamesMapper(newGames),

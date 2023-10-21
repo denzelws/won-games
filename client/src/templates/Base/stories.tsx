@@ -6,4 +6,8 @@ export default {
   component: Base
 } as Meta
 
-export const Default: Story = () => <Base />
+export const Default: Story = () => (
+  <Base>
+    <h1>Base</h1>
+  </Base>
+)
