@@ -1,9 +1,8 @@
-import { renderWithTheme } from 'utils/tests/helpers'
-import { screen } from '@testing-library/react'
-
+import { render, screen } from 'utils/test-utils'
 import { MockedProvider } from '@apollo/client/testing'
-import { fetchMoreMock, gamesMock, noGamesMock } from './mocks'
+
 import filterItemsMock from 'components/ExploreSidebar/mock'
+import { fetchMoreMock, gamesMock, noGamesMock } from './mocks'
 
 import Games from '.'
 import userEvent from '@testing-library/user-event'
@@ -35,49 +34,45 @@ jest.mock('next/link', () => ({
 }))
 
 describe('<Games />', () => {
-  it('should render without data', () => {
-    renderWithTheme(
-      <MockedProvider mocks={[noGamesMock]} addTypename={false}>
-        <Games filterItems={filterItemsMock} />
-      </MockedProvider>
-    )
-  })
-
   it('should render sections', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[gamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
 
+    // we wait until we have data to get the elements
+    // get => tem certeza do elemento
+    // query => Não tem o elemento
+    // find => processos assincronos
     expect(await screen.findByText(/Price/i)).toBeInTheDocument()
-    expect(await screen.findByText(/The Elder Scrolls/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
 
     expect(
       await screen.findByRole('button', { name: /show more/i })
     ).toBeInTheDocument()
   })
 
-  it('should render empty when no games found ', async () => {
-    renderWithTheme(
-      <MockedProvider mocks={[]} addTypename={false}>
+  it('should render empty when no games found', async () => {
+    render(
+      <MockedProvider mocks={[noGamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
 
     expect(
-      await screen.findByText(/We didn't found any game with this filter/i)
+      await screen.findByText(/We didn't find any games with this filter/i)
     ).toBeInTheDocument()
   })
 
   it('should render more games when show more is clicked', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[gamesMock, fetchMoreMock]} cache={apolloCache}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
 
-    expect(await screen.findByText(/The Elder Scrolls/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
 
     userEvent.click(await screen.findByRole('button', { name: /show more/i }))
 
@@ -85,7 +80,7 @@ describe('<Games />', () => {
   })
 
   it('should change push router when selecting a filter', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[gamesMock, fetchMoreMock]} cache={apolloCache}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
