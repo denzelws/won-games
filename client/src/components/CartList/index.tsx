@@ -1,4 +1,4 @@
-import GameItem, { GameItemProps } from 'components/GameItem'
+import GameItem from 'components/GameItem'
 import * as S from './styles'
 import Button from 'components/Button'
 import Link from 'next/link'
