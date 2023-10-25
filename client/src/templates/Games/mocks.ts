@@ -26,13 +26,13 @@ export const gamesMock = {
       games: [
         {
           id: '1',
-          name: 'The Elder Scrolls IV: Oblivion - Game of the Year Edition Deluxe',
-          slug: 'elder-scrolls-iv-oblivion-game-of-the-year-edition-deluxe-the',
-          developers: [{ name: 'Bethesda Game Studios' }],
+          name: 'Sample Game',
+          slug: 'sample-game',
+          price: 518.39,
+          developers: [{ name: 'sample developer' }],
           cover: {
-            url: '/uploads/elder_scrolls_iv_oblivion_game_of_the_year_edition_deluxe_the_2346099f43.jpg'
+            url: 'sample-game.jpg'
           },
-          price: 10.79,
           __typename: 'Game'
         }
       ],
@@ -56,11 +56,11 @@ export const fetchMoreMock = {
           id: '2',
           name: 'Fetch More Game',
           slug: 'fetch-more',
-          developers: [{ name: 'some developer' }],
+          price: 518.39,
+          developers: [{ name: 'sample developer' }],
           cover: {
-            url: 'fetch-more.jpg'
+            url: 'sample-game.jpg'
           },
-          price: 510.79,
           __typename: 'Game'
         }
       ],

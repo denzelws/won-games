@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { render } from 'utils/test-utils'
+import { fireEvent, render, screen } from 'utils/test-utils'
 
 import Dropdown from '.'
 
@@ -25,9 +23,24 @@ describe('<Dropdown />', () => {
     expect(content).toHaveStyle({ opacity: 0 })
     expect(content.getAttribute('aria-hidden')).toBe('true')
 
-    userEvent.click(screen.getByLabelText(/toogle dropdown/))
+    fireEvent.click(screen.getByLabelText(/toogle dropdown/))
 
     expect(content).toHaveStyle({ opacity: 1 })
     expect(content.getAttribute('aria-hidden')).toBe('false')
+  })
+
+  it('should handle open/close dropdown when clicking on overlay', () => {
+    const content = screen.getByText(/content/).parentElement!
+    const overlay = content.nextElementSibling
+
+    fireEvent.click(screen.getByLabelText(/toogle dropdown/))
+
+    expect(overlay).toHaveStyle({ opacity: 1 })
+    expect(overlay!.getAttribute('aria-hidden')).toBe('false')
+
+    fireEvent.click(overlay!)
+
+    expect(overlay).toHaveStyle({ opacity: 0 })
+    expect(overlay!.getAttribute('aria-hidden')).toBe('true')
   })
 })

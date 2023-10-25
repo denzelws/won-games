@@ -1,12 +1,10 @@
-import { screen } from '@testing-library/react'
-import { render } from 'utils/test-utils'
+import { fireEvent, render, screen } from 'utils/test-utils'
 import { Overlay } from './styles'
 import { css } from 'styled-components'
 
 import items from './mock'
 
 import ExploreSidebar from '.'
-import userEvent from '@testing-library/user-event'
 
 describe('<ExploreSidebar />', () => {
   it('should render headings', () => {
@@ -75,9 +73,9 @@ describe('<ExploreSidebar />', () => {
 
     render(<ExploreSidebar items={items} onFilter={onFilter} />)
 
-    userEvent.click(screen.getByLabelText(/windows/i))
-    userEvent.click(screen.getByLabelText(/linux/i))
-    userEvent.click(screen.getByLabelText(/low to high/i))
+    fireEvent.click(screen.getByLabelText(/windows/i))
+    fireEvent.click(screen.getByLabelText(/linux/i))
+    fireEvent.click(screen.getByLabelText(/low to high/i))
 
     expect(onFilter).toHaveBeenCalledTimes(4)
 
@@ -92,15 +90,15 @@ describe('<ExploreSidebar />', () => {
 
     render(<ExploreSidebar items={items} onFilter={onFilter} />)
 
-    userEvent.click(screen.getByLabelText(/low to high/i))
-    userEvent.click(screen.getByLabelText(/high to low/i))
+    fireEvent.click(screen.getByLabelText(/low to high/i))
+    fireEvent.click(screen.getByLabelText(/high to low/i))
 
-    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    fireEvent.click(screen.getByRole('button', { name: /filter/i }))
 
     expect(onFilter).toBeCalledWith({ sort_by: 'high-to-low' })
   })
 
-  it('should open/close sidebar when filtering on mobile ', () => {
+  it('should open/close sidebar when filtering on mobile ', async () => {
     const { container } = render(
       <ExploreSidebar items={items} onFilter={jest.fn} />
     )
@@ -116,16 +114,16 @@ describe('<ExploreSidebar />', () => {
 
     expect(Element).not.toHaveStyleRule('opacity', '1', variant)
 
-    userEvent.click(screen.getByLabelText(/open filters/))
+    fireEvent.click(screen.getByLabelText(/open filters/))
 
     expect(Element).toHaveStyleRule('opacity', '1', variant)
 
-    userEvent.click(screen.getByLabelText(/close filters/))
+    fireEvent.click(screen.getByLabelText(/close filters/))
 
     expect(Element).not.toHaveStyleRule('opacity', '1', variant)
 
-    userEvent.click(screen.getByLabelText(/open filters/))
+    fireEvent.click(screen.getByLabelText(/open filters/))
 
-    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    fireEvent.click(screen.getByRole('button', { name: /filter/i }))
   })
 })

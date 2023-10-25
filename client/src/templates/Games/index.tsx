@@ -1,17 +1,17 @@
-import Base from 'templates/Base'
+import { useRouter } from 'next/router'
+import { ParsedUrlQueryInput } from 'querystring'
 
 import { useQueryGames } from 'graphql/queries/games'
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
+
+import Base from 'templates/Base'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
 import GameCard, { GameCardProps } from 'components/GameCard'
-import ExploreSidebar from 'components/ExploreSidebar'
+import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
+import { Grid } from 'components/Grid'
 
 import * as S from './styles'
-import { ItemProps } from 'components/ExploreSidebar'
-import { Grid } from 'components/Grid'
-import { useRouter } from 'next/router'
-import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
-import { ParsedUrlQueryInput } from 'querystring'
 import Empty from 'components/Empty'
 
 export type GamesTemplateProps = {
@@ -66,6 +66,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
               <Grid>
                 {data?.games.map((game) => (
                   <GameCard
+                    id={game.id}
                     key={game.slug}
                     slug={game.slug}
                     title={game.name}
@@ -94,7 +95,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
           ) : (
             <Empty
               title=":("
-              description="We didn't found any game with this filter"
+              description="We didn't find any games with this filter"
               hasLink
             />
           )}

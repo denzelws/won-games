@@ -88,6 +88,7 @@ describe('<Games />', () => {
 
     userEvent.click(await screen.findByRole('checkbox', { name: /windows/i }))
     userEvent.click(await screen.findByRole('checkbox', { name: /linux/i }))
+
     userEvent.click(await screen.findByLabelText(/low to high/i))
 
     expect(push).toHaveBeenCalledWith({
