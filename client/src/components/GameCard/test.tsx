@@ -4,6 +4,7 @@ import { render } from 'utils/test-utils'
 import GameCard from '.'
 
 const props = {
+  id: '1',
   slug: 'resident-evil',
   title: 'Resident Evil',
   developer: 'GearBox Software',
