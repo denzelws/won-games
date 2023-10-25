@@ -4,6 +4,7 @@ import { render } from 'utils/test-utils'
 import GameInfo from '.'
 
 const props = {
+  id: '1',
   title: 'My Game',
   description: 'Game description',
   price: 220
