@@ -11,11 +11,15 @@ import highlightMock from 'components/Highlight/mock'
 
 const props = {
   banners: bannerMock,
+  newGamesTitle: 'News',
   newGames: [gamesMock[0]],
   mostPopularHighlight: highlightMock,
   mostPopularGames: [gamesMock[0]],
+  mostPopularGamesTitle: 'Most Popular',
+  upcomingGamesTitle: 'Upcoming',
   upcomingGames: [gamesMock[0]],
   upcomingHighlight: highlightMock,
+  freeGamesTitle: 'Free Games',
   freeGames: [gamesMock[0]],
   freeHighlight: highlightMock
 }
