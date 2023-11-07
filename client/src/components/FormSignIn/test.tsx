@@ -1,7 +1,18 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { screen } from '@testing-library/react'
 import { render } from 'utils/test-utils'
 
 import FormSignIn from '.'
+
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+const push = jest.fn()
+
+useRouter.mockImplementation(() => ({
+  push,
+  query: '',
+  asPath: '',
+  route: '/'
+}))
 
 describe('<FormSignIn />', () => {
   it('should render the form', () => {
