@@ -1,4 +1,9 @@
-import { signUpValidate, signInValidate } from '.'
+import {
+  signUpValidate,
+  signInValidate,
+  forgotValidate,
+  resetValidate
+} from '.'
 
 describe('validations', () => {
   describe('signInValidate()', () => {
@@ -35,7 +40,7 @@ describe('validations', () => {
       const values = { username: 'hi', email: '', password: '' }
 
       expect(signUpValidate(values).username).toMatchInlineSnapshot(
-        `"\\"username\\" failed custom validation because Cannot read properties of undefined (reading 'presence')"`
+        `"\\"username\\" length must be at least 5 characters long"`
       )
     })
 
@@ -56,6 +61,41 @@ describe('validations', () => {
       }
 
       expect(signUpValidate(values).confirm_password).toMatchInlineSnapshot(
+        `"confirm password does not match with password"`
+      )
+    })
+  })
+
+  describe('forgotValidate()', () => {
+    it('should validate empty fields', () => {
+      const values = { email: '' }
+
+      expect(forgotValidate(values)).toMatchObject({
+        email: '"email" is not allowed to be empty'
+      })
+    })
+
+    it('should return invalid email error', () => {
+      const values = { email: 'invalid-email' }
+      expect(forgotValidate(values).email).toMatchInlineSnapshot(
+        `"\\"email\\" must be a valid email"`
+      )
+    })
+  })
+
+  describe('resetValidate()', () => {
+    it('should validate confirm password when empty', () => {
+      const values = { password: '123', confirm_password: '' }
+
+      expect(resetValidate(values).confirm_password).toMatchInlineSnapshot(
+        `"\\"confirm_password\\" is not allowed to be empty"`
+      )
+    })
+
+    it('should validate confirm password when different', () => {
+      const values = { password: '123', confirm_password: '4321' }
+
+      expect(resetValidate(values).confirm_password).toMatchInlineSnapshot(
         `"confirm password does not match with password"`
       )
     })

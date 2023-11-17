@@ -8,7 +8,7 @@ import { FormWrapper, FormLoading, FormError } from 'components/Form'
 import TextField from 'components/TextField'
 import Button from 'components/Button'
 
-import { FieldErrors } from 'utils/validations'
+import { FieldErrors, resetValidate } from 'utils/validations'
 
 const FormForgotPassword = () => {
   const [formError, setFormError] = useState('')
@@ -26,7 +26,7 @@ const FormForgotPassword = () => {
     e.preventDefault()
     setLoading(true)
 
-    const errors = {}
+    const errors = resetValidate(values)
 
     if (Object.keys(errors).length) {
       setFieldError(errors)
