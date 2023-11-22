@@ -1,4 +1,6 @@
-import {server} from '../src/utils/mockServer/server'
+global.fetch = require('node-fetch')
+
+import { server } from '../src/utils/mockServer/server'
 
 beforeAll(() => {
   // fica escutando todas as chamadas nos testes
