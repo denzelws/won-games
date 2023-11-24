@@ -26,7 +26,7 @@ export const WishlistContextDefaultValues = {
   loading: false
 }
 
-export const WishListContext = createContext<WishlistContextData>(
+export const WishlistContext = createContext<WishlistContextData>(
   WishlistContextDefaultValues
 )
 
@@ -112,7 +112,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
   }
 
   return (
-    <WishListContext.Provider
+    <WishlistContext.Provider
       value={{
         items: gamesMapper(wishlistItems),
         isInWishlist,
@@ -122,10 +122,10 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
       }}
     >
       {children}
-    </WishListContext.Provider>
+    </WishlistContext.Provider>
   )
 }
 
-const useWishlist = () => useContext(WishListContext)
+const useWishlist = () => useContext(WishlistContext)
 
 export { useWishlist, WishlistProvider }
