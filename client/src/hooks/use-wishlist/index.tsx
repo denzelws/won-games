@@ -57,7 +57,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
     {
       context: { session },
       onCompleted: (data) => {
-        setWishlistItems(data?.createWishlist?.wishlist?.games || [])
+        setWishlistItems(data?.updateWishlist?.wishlist?.games || [])
       }
     }
   )

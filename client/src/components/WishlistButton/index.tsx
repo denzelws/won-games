@@ -16,15 +16,15 @@ const WishlistButton = ({
   const { isInWishlist, addToWishlist, removeFromWishlist } = useWishlist()
   const [session] = useSession()
 
-  const ButtonText = isInWishlist(id)
-    ? `Remove from wishlist`
-    : `Add to wishlist`
-
   const handleClick = () => {
     isInWishlist(id) ? removeFromWishlist(id) : addToWishlist(id)
   }
 
   if (!session) return null
+
+  const ButtonText = isInWishlist(id)
+    ? `Remove from wishlist`
+    : `Add to wishlist`
 
   return (
     <Button
