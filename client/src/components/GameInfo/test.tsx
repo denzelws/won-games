@@ -1,3 +1,5 @@
+import 'session.mock'
+
 import { screen } from '@testing-library/react'
 import { render } from 'utils/test-utils'
 
@@ -32,7 +34,7 @@ describe('<GameInfo />', () => {
       screen.getByRole('button', { name: /add to cart/i })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('button', { name: /wishlist/i })
+      screen.getByRole('button', { name: /add to wishlist/i })
     ).toBeInTheDocument()
   })
 })
