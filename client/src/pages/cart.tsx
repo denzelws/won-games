@@ -5,8 +5,6 @@ import { QueryRecommended } from 'graphql/generated/QueryRecommended'
 import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 import { gamesMapper, highlightMapper } from 'utils/mappers'
 
-import itemsMock from 'components/CartList/mock'
-import cardsMock from 'components/PaymentOptions/mock'
 import protectedRoutes from '../utils/protected-routes'
 import { GetServerSidePropsContext } from 'next'
 
@@ -23,14 +21,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   })
   return {
     props: {
+      session,
       recommendedGames: gamesMapper(data.recommended?.section?.games),
       recommendedTitle: data.recommended?.section?.title,
       recommendedHighlight: highlightMapper(
         data.recommended?.section?.highlight
-      ),
-      cards: cardsMock,
-      items: itemsMock,
-      total: '$ 430,00'
+      )
     }
   }
 }
