@@ -38,3 +38,9 @@ export const Error = styled.p`
     padding-top: ${theme.font.sizes.xsmall};
   `}
 `
+
+export const FreeGames = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.black};
+  `}
+`

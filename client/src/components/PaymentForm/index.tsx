@@ -38,13 +38,13 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
         if (data.error) {
           setError(data.error)
         } else {
+          setFreeGames(false)
           setClientSecret(data.client_secret)
         }
       }
     }
-
     setPaymentMode()
-  })
+  }, [items, session])
 
   const handleChange = (event: StripeCardElementChangeEvent) => {
     setDisabled(event.empty)
@@ -57,17 +57,21 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
         <Heading color="black" size="small" lineBottom>
           Payment
         </Heading>
-        <CardElement
-          options={{
-            hidePostalCode: true,
-            style: {
-              base: {
-                fontSize: '16px'
+        {freeGames ? (
+          <S.FreeGames>Only free games, click buy and enjoy it</S.FreeGames>
+        ) : (
+          <CardElement
+            options={{
+              hidePostalCode: true,
+              style: {
+                base: {
+                  fontSize: '16px'
+                }
               }
-            }
-          }}
-          onChange={handleChange}
-        />
+            }}
+            onChange={handleChange}
+          />
+        )}
         {error && (
           <S.Error>
             <ErrorOutline size={20} /> {error}
@@ -81,7 +85,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
         <Button
           fullWidth
           icon={<ShoppingCart />}
-          disabled={!!error || disabled}
+          disabled={!freeGames && (!!error || disabled)}
         >
           Buy now
         </Button>
