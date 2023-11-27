@@ -28,3 +28,13 @@ export const Footer = styled.div`
     }
   `}
 `
+
+export const Error = styled.p`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    color: ${theme.colors.red};
+    font-size: ${theme.font.sizes.xsmall};
+    padding-top: ${theme.font.sizes.xsmall};
+  `}
+`
