@@ -12,14 +12,17 @@ import Showcase from 'components/Showcase'
 import Base from 'templates/Base'
 
 import * as S from './styles'
+import { Session } from 'next-auth'
 
 export type CartProps = {
+  session: Session
   recommendedGames: GameCardProps[]
   recommendedTitle: string
   recommendedHighlight: HighlightProps
 } & CartListProps
 
 const Cart = ({
+  session,
   recommendedGames,
   recommendedTitle,
   recommendedHighlight
@@ -37,7 +40,7 @@ const Cart = ({
           <CartList />
 
           <Elements stripe={stripe}>
-            <PaymentForm />
+            <PaymentForm session={session} />
           </Elements>
         </S.Content>
 

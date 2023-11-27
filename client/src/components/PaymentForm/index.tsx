@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { Session } from 'next-auth'
+import { useEffect, useState } from 'react'
 import { CardElement } from '@stripe/react-stripe-js'
 import { ErrorOutline, ShoppingCart } from '@styled-icons/material-outlined'
 
@@ -7,10 +8,43 @@ import Button from 'components/Button'
 
 import * as S from './styles'
 import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
+import { useCart } from 'hooks/use-cart'
+import { createPaymentIntent } from 'utils/stripe/methods'
 
-const PaymentForm = () => {
+type PaymentFormProps = {
+  session: Session
+}
+
+const PaymentForm = ({ session }: PaymentFormProps) => {
+  const { items } = useCart()
   const [error, setError] = useState<string | null>(null)
   const [disabled, setDisabled] = useState(true)
+  const [clientSecret, setClientSecret] = useState('')
+  const [freeGames, setFreeGames] = useState(false)
+
+  useEffect(() => {
+    async function setPaymentMode() {
+      if (items.length) {
+        const data = await createPaymentIntent({
+          items,
+          token: session.jwt as string
+        })
+
+        if (data.freeGames) {
+          setFreeGames(true)
+          return
+        }
+
+        if (data.error) {
+          setError(data.error)
+        } else {
+          setClientSecret(data.client_secret)
+        }
+      }
+    }
+
+    setPaymentMode()
+  })
 
   const handleChange = (event: StripeCardElementChangeEvent) => {
     setDisabled(event.empty)
