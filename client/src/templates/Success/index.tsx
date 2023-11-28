@@ -7,6 +7,8 @@ import Link from 'next/link'
 import Showcase from 'components/Showcase'
 import { GameCardProps } from 'components/GameCard'
 import { HighlightProps } from 'components/Highlight'
+import { useEffect } from 'react'
+import { useCart } from 'hooks/use-cart'
 
 export type SuccessTemplateProps = {
   recommendedTitle: string
@@ -19,6 +21,12 @@ const Success = ({
   recommendedGames,
   recommendedHighlight
 }: SuccessTemplateProps) => {
+  const { clearCart } = useCart()
+
+  useEffect(() => {
+    clearCart()
+  }, [clearCart])
+
   return (
     <Base>
       <Container>

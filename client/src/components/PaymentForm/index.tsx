@@ -11,12 +11,14 @@ import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { useCart } from 'hooks/use-cart'
 import { createPaymentIntent } from 'utils/stripe/methods'
 import { FormLoading } from 'components/Form'
+import { useRouter } from 'next/router'
 
 type PaymentFormProps = {
   session: Session
 }
 
 const PaymentForm = ({ session }: PaymentFormProps) => {
+  const { push } = useRouter()
   const { items } = useCart()
   const stripe = useStripe()
   const elements = useElements()
@@ -60,7 +62,12 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     event.preventDefault()
     setLoading(true)
 
-    const payload = await stripe?.confirmCardPayment(clientSecret, {
+    if (freeGames) {
+      push('/success')
+      return
+    }
+
+    const payload = await stripe!.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements!.getElement(CardElement)!
       }
@@ -72,6 +79,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     } else {
       setError(null)
       setLoading(false)
+      push('/success')
     }
   }
 
