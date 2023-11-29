@@ -1,17 +1,19 @@
-import { Session } from 'next-auth'
 import React, { useEffect, useState } from 'react'
+import { Session } from 'next-auth'
+import { useRouter } from 'next/router'
+
+import { useCart } from 'hooks/use-cart'
+import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import { PaymentIntent } from '@stripe/stripe-js'
+import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 import { ErrorOutline, ShoppingCart } from '@styled-icons/material-outlined'
 
 import Heading from 'components/Heading'
 import Button from 'components/Button'
+import { FormLoading } from 'components/Form'
 
 import * as S from './styles'
-import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
-import { useCart } from 'hooks/use-cart'
-import { createPaymentIntent } from 'utils/stripe/methods'
-import { FormLoading } from 'components/Form'
-import { useRouter } from 'next/router'
 
 type PaymentFormProps = {
   session: Session
@@ -58,11 +60,22 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     setError(event.error ? event.error?.message : '')
   }
 
+  const saveOrder = async (paymentIntent?: PaymentIntent) => {
+    const data = await createPayment({
+      items,
+      paymentIntent,
+      token: session.jwt as string
+    })
+
+    return data
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
 
     if (freeGames) {
+      saveOrder()
       push('/success')
       return
     }
@@ -79,6 +92,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     } else {
       setError(null)
       setLoading(false)
+      saveOrder(payload.paymentIntent)
       push('/success')
     }
   }
