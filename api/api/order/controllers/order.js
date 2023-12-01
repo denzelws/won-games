@@ -87,19 +87,21 @@ module.exports = {
 
     const entity = await strapi.services.order.create(entry)
 
-    await strapi.plugins.email.services.email.sendTemplatedEmail({
-      to: userInfo.email,
-      from: 'no-reply@wongames.com'
+    await strapi.plugins["email-designer"].services.email.sendTemplatedEmail({
+        to: userInfo.email,
+        from: 'no-reply@wongames.com'
     },
-    emailTemplate,
     {
-      user: userInfo,
-      payment: {
-        total: `$ ${total_in_cents / 100}`,
-        card_brand: entry.card_brand,
-        card_last4: entry.card_last4
-      },
-      games,
+        templateId: 1,
+    },
+    {
+        user: userInfo,
+        payment: {
+          total: `$ ${total_in_cents / 100}`,
+          card_brand: entry.card_brand,
+          card_last4: entry.card_last4,
+        },
+        games,
     }
     )
 
