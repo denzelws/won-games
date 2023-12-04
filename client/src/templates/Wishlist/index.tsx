@@ -16,13 +16,13 @@ import * as S from './styles'
 export type WishlistTemplateProps = {
   recommendedTitle: string
   recommendedGames: GameCardProps[]
-  upcomingHighlight: HighlightProps
+  recommendedHighlight: HighlightProps
 }
 
 const Wishlist = ({
   recommendedGames,
   recommendedTitle,
-  upcomingHighlight
+  recommendedHighlight
 }: WishlistTemplateProps) => {
   const { items, loading } = useWishlist()
 
@@ -54,7 +54,7 @@ const Wishlist = ({
       </Container>
       <Showcase
         title={recommendedTitle}
-        highlight={upcomingHighlight}
+        highlight={recommendedHighlight}
         games={recommendedGames}
       />
     </Base>

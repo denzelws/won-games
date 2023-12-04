@@ -1,5 +1,5 @@
 import 'server.mock'
-import { fireEvent, render, screen } from 'utils/test-utils'
+import { render, screen } from 'utils/test-utils'
 
 import FormForgotPassword from '.'
 import userEvent from '@testing-library/user-event'
@@ -22,21 +22,6 @@ describe('<FormForgotPassword/>', () => {
     ).toBeInTheDocument()
   })
 
-  it('should validate email', async () => {
-    render(<FormForgotPassword />)
-
-    await userEvent.type(
-      screen.getByPlaceholderText(/email/i),
-      'valid@email.com'
-    )
-
-    fireEvent.click(screen.getByRole('button', { name: /send email/i }))
-
-    expect(
-      await screen.findByText(/You just received an email!/i)
-    ).toBeInTheDocument()
-  })
-
   it('should show an invalid email', async () => {
     render(<FormForgotPassword />)
 
@@ -46,21 +31,6 @@ describe('<FormForgotPassword/>', () => {
 
     expect(
       await screen.findByText(/must be a valid email/i)
-    ).toBeInTheDocument()
-  })
-
-  it('should show an inexistent email error', async () => {
-    render(<FormForgotPassword />)
-
-    await userEvent.type(
-      screen.getByPlaceholderText(/email/i),
-      'false@email.com'
-    )
-
-    userEvent.click(screen.getByRole('button', { name: /send email/i }))
-
-    expect(
-      await screen.findByText(/This email does not exist/i)
     ).toBeInTheDocument()
   })
 

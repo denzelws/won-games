@@ -3,6 +3,13 @@ import { screen } from '@testing-library/react'
 import ProfileMenu from '.'
 import { render } from 'utils/test-utils'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+
+useRouter.mockImplementation(() => ({
+  query: {}
+}))
+
 describe('<ProfileMenu />', () => {
   it('should render the menu', () => {
     const { container } = render(<ProfileMenu />)
