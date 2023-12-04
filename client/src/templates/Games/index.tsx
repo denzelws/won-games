@@ -10,9 +10,10 @@ import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/
 import GameCard, { GameCardProps } from 'components/GameCard'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import { Grid } from 'components/Grid'
-
-import * as S from './styles'
 import Empty from 'components/Empty'
+
+import { getImageUrl } from 'utils/getImageUrl'
+import * as S from './styles'
 
 export type GamesTemplateProps = {
   games?: GameCardProps[]
@@ -71,7 +72,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                     slug={game.slug}
                     title={game.name}
                     developer={game.developers[0].name}
-                    img={`http://localhost:1337${game.cover?.url}` || undefined}
+                    img={`${getImageUrl(game.cover!.url)}`}
                     price={game.price}
                   />
                 ))}
