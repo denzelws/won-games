@@ -26,7 +26,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     query: QUERY_RECOMMENDED
   })
 
-  if (!session) return {}
+  if (!session) return { props: {} }
 
   await apolloClient.query<QueryWishlist, QueryWishlistVariables>({
     query: QUERY_WISHLIST,
