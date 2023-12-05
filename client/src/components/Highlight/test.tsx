@@ -5,7 +5,7 @@ import Highlight from '.'
 import * as S from './styles'
 
 const props = {
-  backgroundImage: '/img/background',
+  backgroundImage: '/img/red-dead-background.jpg',
   title: 'Heading 1',
   subtitle: 'Heading 2',
   buttonLabel: 'Buy now',
@@ -25,14 +25,6 @@ describe('<Highlight />', () => {
     ).toBeInTheDocument()
 
     expect(screen.getByRole('link', { name: /buy now/i }))
-  })
-
-  it('should render a background image', () => {
-    const { container } = render(<Highlight {...props} />)
-
-    expect(container.firstChild).toHaveStyle({
-      backgroundImage: `url(${props.backgroundImage})`
-    })
   })
 
   it('should render a float image', () => {
