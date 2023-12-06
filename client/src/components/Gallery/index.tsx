@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from 'react'
 import Slider, { SliderSettings } from 'components/Slider'
 
 import * as S from './styles'
+import Image from 'next/image'
 
 const commonSettings: SliderSettings = {
   infinite: false,
@@ -79,7 +80,9 @@ const Gallery = ({ items }: GalleryProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((item, index) => (
-          <img
+          <Image
+            width={295}
+            height={165}
             role="button"
             key={`thumb-${index}`}
             src={item.src}
@@ -104,7 +107,13 @@ const Gallery = ({ items }: GalleryProps) => {
         <S.Content>
           <Slider ref={slider} settings={modalSettings}>
             {items.map((item, index) => (
-              <img key={`gallery-${index}`} src={item.src} alt={item.label} />
+              <Image
+                width={1200}
+                height={675}
+                key={`gallery-${index}`}
+                src={item.src}
+                alt={item.label}
+              />
             ))}
           </Slider>
         </S.Content>
