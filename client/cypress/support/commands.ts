@@ -22,6 +22,9 @@
 //
 //
 // -- This will overwrite an existing command --
+// Add Testing Library Commands
+import '@testing-library/cypress/add-commands'
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('google', () => cy.visit('https://google.com'))
