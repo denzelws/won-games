@@ -22,40 +22,40 @@
 //
 //
 // -- This will overwrite an existing command --
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 // Add Testing Library Commands
 import '@testing-library/cypress/add-commands'
-
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('getByDataCy', (selector, ...args) => {
   return cy.get(`[data-cy="${selector}"]`, ...args)
 })
 
 Cypress.Commands.add('shouldRenderBanner', () => {
-  cy.get('.slick-slider').first().within(() => {
-    cy.findByRole('heading', { name: 'Cyberpunk 2077'} )
+  cy.get('.slick-slider').within(() => {
+    cy.findByRole('heading', { name: 'Cyberpunk 2077' })
     cy.findByRole('link', { name: /buy now/i })
 
     cy.get('.slick-dots > :nth-child(2) > button').click()
     cy.wait(500)
 
-    cy.findByRole('heading', { name: 'Horizon Zero Dawn'} )
+    cy.findByRole('heading', { name: /horizon zero dawn/i })
     cy.findByRole('link', { name: /buy now/i })
 
     cy.get('.slick-dots > :nth-child(3) > button').click()
+    cy.wait(500)
 
-    cy.findByRole('heading', { name: 'Huge promotion!'} )
+    cy.findByRole('heading', { name: /huge promotion!/i })
     cy.findByRole('link', { name: /browse games/i })
   })
 })
 
-Cypress.Commands.add('shouldRenderShowcase', ({name, highlight = false}) => {
+Cypress.Commands.add('shouldRenderShowcase', ({ name, hightlight = false }) => {
   cy.getByDataCy(name).within(() => {
     cy.findByRole('heading', { name }).should('exist')
 
-    cy.getByDataCy('highlight').should(highlight ? 'exist' : 'not.exist')
+    cy.getByDataCy('highlight').should(hightlight ? 'exist' : 'not.exist')
 
-    if(highlight) {
+    if (hightlight) {
       cy.getByDataCy('highlight').within(() => {
         cy.findByRole('link').should('have.attr', 'href')
       })

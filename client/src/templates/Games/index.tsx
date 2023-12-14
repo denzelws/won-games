@@ -72,7 +72,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                     slug={game.slug}
                     title={game.name}
                     developer={game.developers[0].name}
-                    img={`${getImageUrl(game.cover!.url)}`}
+                    img={`http://localhost:1337${game.cover?.url}` || undefined}
                     price={game.price}
                   />
                 ))}
