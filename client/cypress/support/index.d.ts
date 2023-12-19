@@ -26,6 +26,18 @@ declare namespace Cypress {
     getFields(fields: FieldsAttributes[]): Chainable<Element>
 
     /**
+     * Custom command get fields by label
+     * @example cy.shouldBeGreaterThan(0)
+     */
+    shouldBeGreaterThan(value: number): Chainable<Element>
+
+    /**
+     * Custom command get fields by label
+     * @example cy.shouldBeLessThan(100)
+     */
+    shouldBeLessThan(value: number): Chainable<Element>
+
+    /**
      * Custom command to check banner in page
      * @example cy.shouldRenderBanner()
      */
