@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 // Add Testing Library Commands
 import '@testing-library/cypress/add-commands'
+import { User } from './generate'
 
 Cypress.Commands.add('getByDataCy', (selector, ...args) => {
   return cy.get(`[data-cy="${selector}"]`, ...args)
@@ -34,6 +35,21 @@ Cypress.Commands.add('getFields', (fields) => {
   fields.map(({label}) => {
     cy.findByText(label).should('exist')
   })
+})
+
+Cypress.Commands.add('signUp', (user: User) => {
+  cy.findByPlaceholderText(/username/i).type(user.username)
+  cy.findByPlaceholderText(/email/i).type(user.email)
+  cy.findByPlaceholderText(/^password/i).type(user.password)
+  cy.findByPlaceholderText(/confirm password/i).type(user.password)
+  cy.findByRole('button', {name: /sign up now/i}).click()
+})
+
+Cypress.Commands.add('signIn', (email = 'e2e@wongames.com', password = '123456') => {
+  cy.url().should('contain', `${Cypress.config().baseUrl}/sign-in`)
+  cy.findByPlaceholderText(/email/i).type(email)
+  cy.findByPlaceholderText(/password/i).type(password)
+  cy.findByRole('button', {name: /sign in now/i}).click()
 })
 
 Cypress.Commands.add('shouldBeGreaterThan', (value) => {
