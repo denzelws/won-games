@@ -3,7 +3,7 @@
 import { createUser } from "../support/generate"
 
 describe('User', () => {
-  it.skip('should sign up', () => {
+  it('should sign up', () => {
     cy.visit('/sign-up')
     const user = createUser()
     cy.signUp(user)
@@ -21,5 +21,16 @@ describe('User', () => {
 
     cy.findByRole('link', {name: /sign in/i}).should('exist')
     cy.findByText(/wongamese2e/i).should('not.exist')
+  })
+
+  it('should sign the user and redirect to the page that it was previously defined', () => {
+    cy.visit('/profile/me')
+
+    cy.url().should('eq', `${Cypress.config().baseUrl}/sign-in?callbackUrl=/profile/me`)
+    cy.signIn()
+
+    cy.url().should('eq', `${Cypress.config().baseUrl}/profile/me`)
+    cy.findByPlaceholderText(/username/i).should('have.value', 'wongamese2e')
+    cy.findByPlaceholderText(/e-mail/i).should('have.value', 'e2e@wongames.com')
   })
 })
