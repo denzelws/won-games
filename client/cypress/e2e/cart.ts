@@ -4,9 +4,7 @@ describe('Cart', () => {
   it('should add and remove game to cart when click in the icon', () => {
     cy.visit('/')
 
-    cy.getByDataCy('game-card').eq(0).within(() => {
-      cy.findByRole('button', {name: /add to cart/i}).click()
-    })
+    cy.addToCartByIndex(0)
 
     cy.findAllByLabelText(/cart items/i)
     .first()
@@ -21,9 +19,7 @@ describe('Cart', () => {
     .first()
     .click()
 
-    cy.getByDataCy('game-card').eq(0).within(() => {
-      cy.findByRole('button', {name: /remove from cart/i}).click()
-    })
+    cy.removeFromCartByIndex(0)
 
     cy.findAllByLabelText(/cart items/i).should('not.exist')
   })
