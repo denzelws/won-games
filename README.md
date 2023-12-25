@@ -21,7 +21,7 @@ Esta é a API para criar a Won Games Store
 
 Este projeto usa [PostgreSQL](https://www.postgresql.org/), portanto, para que funcione, instale-o em sua máquina local ou use o Docker.
 
-A configuração para o Banco de Dados pode ser encontrada em [config/database.js](config/database.js)
+A configuração para o Banco de Dados pode ser encontrada em [config/database.js](https://github.com/denzelws/won-games/blob/main/api/config/database.js)
 
 ## Desenvolvimento
 
