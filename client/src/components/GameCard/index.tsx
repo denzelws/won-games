@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
@@ -43,7 +42,7 @@ const GameCard = ({
 
     <Link href={`/game/${slug}`} passHref>
       <S.ImageBox>
-        {img && <Image src={img} alt={title} layout="fill" objectFit="cover" />}
+        <img src={img} alt={title} />
       </S.ImageBox>
     </Link>
 
