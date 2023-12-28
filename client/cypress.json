@@ -3,5 +3,6 @@
   "integrationFolder": "cypress/e2e",
   "baseUrl": "http://localhost:3000",
   "pageLoadTimeout": 200000,
-  "defaultCommandTimeout": 80000
+  "defaultCommandTimeout": 80000,
+  "chromeWebSecurity": false
 }
